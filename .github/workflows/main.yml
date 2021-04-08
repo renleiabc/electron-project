@@ -3,7 +3,7 @@ name: Build/release
 on:
   push:
     tags:
-      - 'v1.0.3'
+      - 'v1.0.4'
 
 jobs:
   release:
@@ -25,18 +25,20 @@ jobs:
       - name: npm install
         run: |
           npm install
+          npm audit fix –force
+          npm audit
       # step4: build app for mac/win
       - name: build windows app
         if: matrix.os == 'windows-2019'
         run: |
-          npm run build-win
+         npm electron:build --publish always
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: build mac app
         if: matrix.os == 'macos-10.15'
         run: |
-          npm run build-mac
+        npm electron:build --publish always
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
@@ -55,9 +57,7 @@ jobs:
           npx  rimraf "build/*.blockmap"
           npx  rimraf "build/*.yaml"
           npx  rimraf "build/*.json"
-          (Get-Content "node_modules/builder-util/out/util.js").Replace("^[\w","^[.\w")| out-file "node_modules/builder-util/out/util.js"
-          npm electron:build --publish always
-           # step6: upload artifacts
+      # step6: upload artifacts
       - name: upload artifacts
         uses: actions/upload-artifact@v2
         with:
