@@ -3,7 +3,7 @@ name: Build/release
 on:
   push:
     tags:
-      - 'v1.0.5'
+      - 'v1.0.6'
 
 jobs:
   release:
@@ -31,32 +31,25 @@ jobs:
       - name: build windows app
         if: matrix.os == 'windows-2019'
         run: |
-         npm electron:build --publish always
+          npm electron:build --publish always
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: build mac app
         if: matrix.os == 'macos-10.15'
         run: |
-        npm electron:build --publish always
-       env:
+          npm electron:build --publish always
+        env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-
       # step5: cleanup artifacts in build
       - name: cleanup artifacts for windows
         if: matrix.os == 'windows-2019'
         run: |
-          npx  rimraf "build/win-unpacked"
-          npx  rimraf "build/*.exe.blockmap"
-          npx  rimraf "build/*.yaml"
+          npx rimraf "build/!(*.exe)"
       - name: cleanup artifacts for macosZ
         if: matrix.os == 'macos-10.15'
         run: |
-          npx  rimraf "build/icons"
-          npx  rimraf "build/mac"
-          npx  rimraf "build/*.blockmap"
-          npx  rimraf "build/*.yaml"
-          npx  rimraf "build/*.json"
+          npx rimraf "build/!(*.dmg)"
       # step6: upload artifacts
       - name: upload artifacts
         uses: actions/upload-artifact@v2
