@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2020-10-24 16:13:49
  * @LastEditors: abc
- * @LastEditTime: 2021-03-22 15:42:31
+ * @LastEditTime: 2021-04-08 11:17:41
  * @Description:vue-cil config
  */
 const path = require('path');
@@ -92,12 +92,7 @@ module.exports = {
         mac: {
           icon: './public/img/icons/512.icns'
         },
-        publish: [
-          {
-            provider: 'generic',
-            url: 'http://127.0.0.1:5501/download/'
-          }
-        ],
+        publish: ['github'],
         nsis: {
           oneClick: false,
           perMachine: false,

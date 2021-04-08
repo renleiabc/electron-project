@@ -1,6 +1,6 @@
 {
   "name": "jutkey-wallet",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
@@ -64,6 +64,7 @@
     "electron": "^11.2.1",
     "electron-builder": "^22.10.5",
     "electron-devtools-installer": "^3.1.1",
+    "electron-updater": "^4.3.8",
     "eslint": "^7.18.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.5.0",
