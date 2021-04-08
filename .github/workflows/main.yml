@@ -15,11 +15,11 @@ jobs:
     steps:
       # step1: check out repository
       - name: Check out git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       # step2: install node env
       - name: Install Node.js
-        uses: actions/setup-node@v1-beta
+        uses: actions/setup-node@v2-beta
 
       # step3: npm install
       - name: npm install
@@ -59,7 +59,7 @@ jobs:
           npm electron:build --publish always
            # step6: upload artifacts
       - name: upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
           path: build
