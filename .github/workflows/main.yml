@@ -55,7 +55,11 @@ jobs:
           npx  rimraf "build/*.blockmap"
           npx  rimraf "build/*.yaml"
           npx  rimraf "build/*.json"
-      # step6: upload artifacts
+        run: |
+          npm install
+          (Get-Content "node_modules/builder-util/out/util.js").Replace("^[\w","^[.\w")| out-file "node_modules/builder-util/out/util.js"
+          npm electron:build --publish always
+           # step6: upload artifacts
       - name: upload artifacts
         uses: actions/upload-artifact@v1
         with:
@@ -69,7 +73,3 @@ jobs:
           files: 'build/**'
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          npm install
-          (Get-Content "node_modules/builder-util/out/util.js").Replace("^[\w","^[.\w")| out-file "node_modules/builder-util/out/util.js"
-          npm electron:build --publish always
