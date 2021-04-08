@@ -2,11 +2,11 @@
  * @Author: abc
  * @Date: 2021-01-30 14:47:03
  * @LastEditors: abc
- * @LastEditTime: 2021-04-08 18:21:08
+ * @LastEditTime: 2021-04-08 18:47:29
  * @Description: login page
 -->
 <template>
-  <div class="login" style="background: red">
+  <div class="login">
     <div class="login-left"></div>
     <div class="login-right">
       <div class="login-right-top">
