@@ -7,7 +7,7 @@ name: uild Electron App For Win/Mac
 on:
   push:
     tags:
-      - 'v1.1.8'
+      - 'v1.1.9'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -57,6 +57,7 @@ jobs:
         if: matrix.os == 'windows-2019'
         run: |
           npx  rimraf "build/win-unpacked"
+          npx  rimraf "build/win-ia32-unpacked"
           npx  rimraf "build/*.exe.blockmap"
           npx  rimraf "build/*.yaml"
 
