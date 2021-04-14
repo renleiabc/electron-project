@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2020-10-24 16:13:49
  * @LastEditors: abc
- * @LastEditTime: 2021-04-14 15:02:07
+ * @LastEditTime: 2021-04-14 15:15:50
  * @Description:vue-cil config
  */
 const path = require('path');
