@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 16:13:10
  * @LastEditors: abc
- * @LastEditTime: 2021-04-08 19:13:32
+ * @LastEditTime: 2021-04-14 14:59:20
  * @Description: electron config
  */
 'use strict';
@@ -11,7 +11,7 @@ import { app, protocol, BrowserWindow, globalShortcut, Menu } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const isDevelopment = process.env.NODE_ENV !== 'production';
-import { updateHandle } from './update';
+import { updateHandle } from './renderer/UpdateCopy';
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }

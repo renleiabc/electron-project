@@ -15,7 +15,7 @@ import app from '@/main.js';
 import util from '@/plugins/util.js';
 import auth from '@/plugins/auth.js';
 const md5 = require('md5');
-class APP {
+class UAPP {
   state = {
     decimals: 0, // usdt Decimal length
     histories: [], // Transaction history
@@ -283,5 +283,5 @@ class APP {
     });
   };
 }
-let usdt = new APP();
+let usdt = new UAPP();
 export default usdt;

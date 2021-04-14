@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 18:41:50
  * @LastEditors: abc
- * @LastEditTime: 2021-03-06 11:43:52
+ * @LastEditTime: 2021-04-14 15:00:13
  * @Description: 
 -->
 <template>
@@ -35,6 +35,7 @@
         </el-main>
       </el-container>
     </el-container>
+    <dialog-updater ref="updater" :isBout="isBout"></dialog-updater>
   </div>
 </template>
 <script>
@@ -54,6 +55,9 @@ export default {
       },
       immediate: true
     }
+  },
+  mounted() {
+    this.$refs.updater.check();
   },
   created() {
     this.isLogin = this.$route.path === '/login';
