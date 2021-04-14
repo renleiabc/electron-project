@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2020-10-24 16:13:49
  * @LastEditors: abc
- * @LastEditTime: 2021-04-14 15:15:50
+ * @LastEditTime: 2021-04-14 17:39:05
  * @Description:vue-cil config
  */
 const path = require('path');
@@ -96,7 +96,6 @@ module.exports = {
           provider: 'github',
           repo: 'electron-project', // git仓库
           owner: 'renleiabc', // 拥有者
-          token: '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', // gitToken
           releaseType: 'release',
           publishAutoUpdate: true // 发布自动更新（需要配置GH_TOKEN）。 默认true
         },
