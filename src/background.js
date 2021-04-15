@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 16:13:10
  * @LastEditors: abc
- * @LastEditTime: 2021-04-14 14:59:20
+ * @LastEditTime: 2021-04-15 17:49:24
  * @Description: electron config
  */
 'use strict';
@@ -93,6 +93,15 @@ app.on('ready', async () => {
     } catch (e) {
       console.error('Vue Devtools failed to install:', e.toString());
     }
+  }
+  if (process.platform === 'darwin') {
+    let contents = win.webContents;
+    globalShortcut.register('CommandOrControl+C', () => {
+      contents.copy();
+    });
+    globalShortcut.register('CommandOrControl+V', () => {
+      contents.paste();
+    });
   }
   createWindow();
 });

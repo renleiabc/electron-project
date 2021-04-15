@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-02-04 18:52:25
  * @LastEditors: abc
- * @LastEditTime: 2021-04-05 10:51:23
+ * @LastEditTime: 2021-04-15 09:29:18
  * @Description: routes Array
  */
 const routes = [
@@ -88,7 +88,7 @@ const routes = [
       key: '10-1',
       title: '',
       icon: '',
-      show: true,
+      show: false,
       roles: 'basic'
     }
   },
@@ -99,7 +99,7 @@ const routes = [
       key: '10-2',
       title: '',
       icon: '',
-      show: true,
+      show: false,
       roles: 'basic'
     }
   }
