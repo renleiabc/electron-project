@@ -7,7 +7,7 @@ name: uild Electron App For Win/Mac
 on:
   push:
     tags:
-      - 'v1.2.7'
+      - 'v1.3.0'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
