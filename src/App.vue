@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 18:41:50
  * @LastEditors: abc
- * @LastEditTime: 2021-04-14 15:00:13
+ * @LastEditTime: 2021-04-19 12:03:46
  * @Description: 
 -->
 <template>
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       isLogin: false,
+      isBout: false,
       isRouterAlive: true
     };
   },

@@ -65,10 +65,11 @@ export default {
   methods: {
     check() {
       let that = this;
+
       console.log(this.isElectron);
       if (this.isElectron) {
         console.log('electron environment');
-        // that.ipcRenderer = window.ipcRenderer;
+        that.ipcRenderer = window.ipcRenderer;
         console.log(that.ipcRenderer);
         this.ipcRenderer.on('message', (event, data) => {
           console.log('message', data);
