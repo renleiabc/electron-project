@@ -1,6 +1,6 @@
 {
   "name": "jutkey-wallet",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
@@ -11,8 +11,7 @@
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "publish": "vue-cli-service electron:build --win --x64 -p always"
+    "postuninstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
   "dependencies": {

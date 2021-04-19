@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 16:13:10
  * @LastEditors: abc
- * @LastEditTime: 2021-04-15 17:49:24
+ * @LastEditTime: 2021-04-15 18:20:11
  * @Description: electron config
  */
 'use strict';
@@ -65,6 +65,30 @@ async function createWindow() {
   globalShortcut.register('ESC', function () {
     win.unmaximize();
   });
+  if (process.platform === 'darwin') {
+    const template = [
+      {
+        label: 'Application',
+        submenu: [
+          {
+            label: 'Quit',
+            accelerator: 'Command+Q',
+            click: function () {
+              app.quit();
+            }
+          }
+        ]
+      },
+      {
+        label: 'Edit',
+        submenu: [
+          { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+          { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' }
+        ]
+      }
+    ];
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  }
 }
 
 // Quit when all windows are closed.
@@ -93,15 +117,6 @@ app.on('ready', async () => {
     } catch (e) {
       console.error('Vue Devtools failed to install:', e.toString());
     }
-  }
-  if (process.platform === 'darwin') {
-    let contents = win.webContents;
-    globalShortcut.register('CommandOrControl+C', () => {
-      contents.copy();
-    });
-    globalShortcut.register('CommandOrControl+V', () => {
-      contents.paste();
-    });
   }
   createWindow();
 });
