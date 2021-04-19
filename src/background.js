@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 16:13:10
  * @LastEditors: abc
- * @LastEditTime: 2021-04-15 18:20:11
+ * @LastEditTime: 2021-04-19 11:32:49
  * @Description: electron config
  */
 'use strict';
@@ -11,7 +11,10 @@ import { app, protocol, BrowserWindow, globalShortcut, Menu } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const isDevelopment = process.env.NODE_ENV !== 'production';
-import { updateHandle } from './renderer/UpdateCopy';
+import { updateHandle } from './plugins/update.js';
+//let feedUrl = 'https://lightts1.hashold.com/download/'; // **.exe
+let feedUrl = 'http://192.168.1.238:5500/download/'; // **.exe
+// Scheme must be registered before the app is ready
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -53,7 +56,7 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html');
     //检查更新
-    updateHandle(win);
+    updateHandle(win, feedUrl);
   }
   win.on('closed', () => {
     win = null;

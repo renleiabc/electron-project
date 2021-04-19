@@ -16,9 +16,9 @@
       <template v-if="downloadProcess.transferred">
         <p>
           {{
-            '当前:' +
+            'Current:' +
             downloadProcess.transferred +
-            '   /   共' +
+            '   /   ' +
             downloadProcess.total
           }}
         </p>
@@ -47,7 +47,7 @@ export default {
       timer2: '',
       progress: 0,
       progressText: '',
-      tip: '正在下载',
+      tip: 'Downloading',
       updateinfo: {},
       mustupdate: false,
       updating: false,
@@ -65,35 +65,40 @@ export default {
   methods: {
     check() {
       let that = this;
-      // 仅在Electron模式下(为了让非Electron后能够正常运行，添加的判断)
       console.log(this.isElectron);
       if (this.isElectron) {
-        console.log('electron环境');
-        that.ipcRenderer = window.ipcRenderer;
+        console.log('electron environment');
+        // that.ipcRenderer = window.ipcRenderer;
         console.log(that.ipcRenderer);
         this.ipcRenderer.on('message', (event, data) => {
           console.log('message', data);
         });
         this.ipcRenderer.once('update-not-available', (event, info) => {
           this.verison = info.verison;
-          this.$message.success(`已经是最新版本了${info.version}`);
+          this.$message.success(`It's the latest version:${info.version}`);
         });
-        // 发现新版本
+        // New version found
         that.ipcRenderer.once('autoUpdater-canUpdate', (event, info) => {
           this.newversion = info.version;
-          this.$confirm(`发现有新版本【v${info.version}】，是否更新?`, '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-          })
+          this.$confirm(
+            `New version found【v${info.version}】，Update?`,
+            'Tips',
+            {
+              confirmButtonText: 'Confirm',
+              // cancelButtonText: 'Cancel',
+              type: 'warning'
+            }
+          )
             .then(() => {
               this.showUpdater = true;
               this.updating = true;
               that.ipcRenderer.send('autoUpdater-toDownload');
             })
-            .catch(() => {});
+            .catch(() => {
+              this.ipcRenderer.send('window-close');
+            });
         });
-        // 下载进度
+        // Download progress
         that.ipcRenderer.on('autoUpdater-progress', (event, process) => {
           if (process.transferred >= 1024 * 1024) {
             process.transferred =
@@ -120,21 +125,20 @@ export default {
           console.log(process.transferred === 100);
           if (parseInt(process.percent) === 100) {
             this.updating = false;
-            this.tip = '下载已完成';
+            this.tip = 'Download completed';
           } else if (parseInt(process.percent) < 100) {
             this.updating = true;
             this.showUpdater = true;
           }
           console.log(this.updating);
         });
-        // 下载更新失败
+        // Failed to download update
         that.ipcRenderer.once('autoUpdater-error', () => {
-          this.$message.error('更新失败！');
+          this.$message.error('Failed to download update!');
         });
       }
     }
     /*  start() {
-      // 下载完成
      window.ipcRenderer.once('autoUpdater-downloaded', () => {
         window.ipcRenderer.send('exit-app');
       });
