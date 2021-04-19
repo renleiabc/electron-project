@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2021-01-29 18:41:50
  * @LastEditors: abc
- * @LastEditTime: 2021-03-22 19:08:51
+ * @LastEditTime: 2021-04-19 12:00:16
  * @Description: Master file
  */
 import Vue from 'vue';
@@ -21,7 +21,7 @@ import twLocale from 'element-ui/lib/locale/lang/zh-TW';
 import jaLocale from 'element-ui/lib/locale/lang/ja';
 import util from './plugins/util.js';
 import './plugins/http';
-import './registerServiceWorker';
+// import './registerServiceWorker';
 import './components/component.js';
 const en = require('@/lang/en-us.json');
 const zh = require('@/lang/zh-cn.json');

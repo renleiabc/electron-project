@@ -2,12 +2,19 @@
  * @Author: abc
  * @Date: 2021-01-29 16:13:10
  * @LastEditors: abc
- * @LastEditTime: 2021-04-19 11:32:49
+ * @LastEditTime: 2021-04-19 11:55:50
  * @Description: electron config
  */
 'use strict';
 // const path = require('path');
-import { app, protocol, BrowserWindow, globalShortcut, Menu } from 'electron';
+import {
+  app,
+  protocol,
+  BrowserWindow,
+  globalShortcut,
+  Menu,
+  ipcMain
+} from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -67,6 +74,9 @@ async function createWindow() {
   // esc，
   globalShortcut.register('ESC', function () {
     win.unmaximize();
+  });
+  ipcMain.on('window-close', function () {
+    win.close();
   });
   if (process.platform === 'darwin') {
     const template = [

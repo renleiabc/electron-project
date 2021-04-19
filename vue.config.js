@@ -2,7 +2,7 @@
  * @Author: abc
  * @Date: 2020-10-24 16:13:49
  * @LastEditors: abc
- * @LastEditTime: 2021-04-14 17:39:05
+ * @LastEditTime: 2021-04-19 11:58:33
  * @Description:vue-cil config
  */
 const path = require('path');
@@ -94,7 +94,7 @@ module.exports = {
         },
         publish: {
           provider: 'github',
-          repo: 'electron-project', // git仓库
+          repo: 'https://github.com/renleiabc/electron-project', // git仓库
           owner: 'renleiabc', // 拥有者
           releaseType: 'release',
           publishAutoUpdate: true // 发布自动更新（需要配置GH_TOKEN）。 默认true
